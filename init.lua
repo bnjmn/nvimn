@@ -26,8 +26,8 @@ Kickstart.nvim is a template for your own configuration.
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = "<Space>"
-vim.g.maplocalleader = "<Space>"
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -60,6 +60,10 @@ require("lazy").setup({
 
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
+
+	-- tpope pkgs I like (bnjmn)
+	"tpope/vim-surround",
+	"tpope/vim-eunuch",
 
 	-- NOTE: This is where your plugins related to LSP can be installed.
 	--  The configuration is done below. Search for lspconfig to find it below.
@@ -654,6 +658,14 @@ cmp.setup({
 		{ name = "path" },
 	},
 })
+
+-- bnjmn keymaps
+--
+-- Terminal mappings for easier navigation using vim.keymap.set
+vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', {noremap = true})
+vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', {noremap = true})
+vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', {noremap = true})
+vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', {noremap = true})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
