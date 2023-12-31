@@ -715,13 +715,19 @@ end, {silent = true})
 vim.keymap.set('n', '<C-w><', function()
   vim.cmd('vertical resize ' .. math.floor(vim.fn.winwidth(0) * 9 / 10))
 end, {silent = true})
+-- Toggle Fixed Window Size
+vim.keymap.set('n', '<leader>tfw', function()
+  vim.wo.winfixheight = not vim.wo.winfixheight
+  vim.wo.winfixwidth = not vim.wo.winfixwidth
+  local message = "Window height fix: " .. (vim.wo.winfixheight and "enabled" or "disabled") ..
+                  ", Window width fix: " .. (vim.wo.winfixwidth and "enabled" or "disabled")
+  vim.notify(message)
+end, {desc = "Toggle Fixed Window Height/Width"})
 
 -- ColorColumn - to warn about line lengths getting out of control
 vim.wo.colorcolumn = ""
-
 -- Define the highlight for ColorColumn
 vim.cmd([[highlight ColorColumn ctermbg=NONE guibg=#335555]])
-
 local function toggle_colorcolumn()
   if vim.wo.colorcolumn == "" then
     -- Retrieve the textwidth dynamically from the buffer options
@@ -733,8 +739,6 @@ local function toggle_colorcolumn()
     vim.notify("ColorColumn Disabled")
   end
 end
-
--- Map the toggle function to a key combination
 vim.keymap.set('n', '<leader>tc', toggle_colorcolumn, {desc = "toggle ColorColumn"})
 
 -- Testing
