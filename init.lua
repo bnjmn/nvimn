@@ -238,13 +238,7 @@ require("lazy").setup({
 	-- require 'kickstart.plugins.autoformat',
 	-- require 'kickstart.plugins.debug',
 
-	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-	--    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-	--    up-to-date with whatever is in the kickstart repo.
-	--    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-	--
-	--    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-	-- { import = 'custom.plugins' },
+	{ import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -263,7 +257,7 @@ vim.o.mouse = "a"
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = "unnamedplus"
+-- vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -554,12 +548,13 @@ require("mason-lspconfig").setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
+	pyright = {},
 	-- clangd = {},
 	-- gopls = {},
-	-- pyright = {},
 	-- rust_analyzer = {},
 	-- tsserver = {},
 	-- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  bashls = {},
 
 	lua_ls = {
 		Lua = {
