@@ -95,6 +95,10 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			-- See `:help gitsigns.txt`
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 250,
+      },
 			signs = {
 				add = { text = "+" },
 				change = { text = "~" },
@@ -505,6 +509,7 @@ local servers = {
 	-- rust_analyzer = {},
 	-- tsserver = {},
 	-- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  ansiblels = {},
   bashls = {},
   yamlls = {},
   helm_ls = {
@@ -594,6 +599,7 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = {
+		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
